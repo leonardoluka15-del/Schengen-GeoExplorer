@@ -16,37 +16,53 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 
 data class Country(val name:String,val capital:String,val divisions:String,val currency:String,val regions:List<String>)
+data class Place(val code:String,val region:String,val province:String,val city:String)
+val codes = mapOf("Austria" to "AT","Belgium" to "BE","Bulgaria" to "BG","Croatia" to "HR","Czechia" to "CZ","Denmark" to "DK","Estonia" to "EE","Finland" to "FI","France" to "FR","Germany" to "DE","Greece" to "GR","Hungary" to "HU","Iceland" to "IS","Italy" to "IT","Latvia" to "LV","Liechtenstein" to "LI","Lithuania" to "LT","Luxembourg" to "LU","Malta" to "MT","Netherlands" to "NL","Norway" to "NO","Poland" to "PL","Portugal" to "PT","Romania" to "RO","Slovakia" to "SK","Slovenia" to "SI","Spain" to "ES","Sweden" to "SE","Switzerland" to "CH")
 
 class MainActivity : ComponentActivity() {
  override fun onCreate(savedInstanceState: Bundle?) {
   super.onCreate(savedInstanceState)
-  val countries = assets.open("countries.txt").bufferedReader().use { reader ->
-   reader.readLines().filter { it.isNotBlank() }.mapNotNull { line ->
+  val countries = assets.open("countries.txt").bufferedReader().useLines { lines ->
+   lines.filter { it.isNotBlank() }.mapNotNull { line ->
     val p=line.split("|")
     if(p.size<5) null else Country(p[0],p[1],p[2],p[3],p[4].split(";").filter { it.isNotBlank() })
-   }
+   }.toList()
   }
-  setContent { MaterialTheme { Explorer(countries) } }
+  val places = try {
+   assets.open("places.tsv").bufferedReader().useLines { lines ->
+    lines.mapNotNull { line ->
+     val p=line.split("\t")
+     if(p.size!=4)null else Place(p[0],p[1],p[2],p[3])
+    }.toList()
+   }
+  } catch (_:Exception) { emptyList() }
+  setContent { MaterialTheme { Explorer(countries,places) } }
  }
 }
-@Composable fun Explorer(data:List<Country>) {
+@Composable fun Explorer(data:List<Country>,places:List<Place>) {
  val context=LocalContext.current
  val prefs=remember { context.getSharedPreferences("favorites",Activity.MODE_PRIVATE) }
  var country by remember { mutableStateOf<Country?>(null) }
  var region by remember { mutableStateOf<String?>(null) }
+ var province by remember { mutableStateOf<String?>(null) }
  var query by remember { mutableStateOf("") }
  var favoritesOnly by remember { mutableStateOf(false) }
  var favorites by remember { mutableStateOf(prefs.getStringSet("countries",emptySet())!!.toSet()) }
- fun back() { if(region!=null) region=null else country=null;query="" }
+ fun back() {
+  if(province!=null) province=null else if(region!=null)region=null else country=null
+  query=""
+ }
  BackHandler(country!=null) { back() }
+ val current=country
+ val subset=remember(current,places) { places.filter { it.code==codes[current?.name] } }
  Column(Modifier.fillMaxSize().padding(16.dp)) {
   Text("Schengen GeoExplorer",style=MaterialTheme.typography.headlineMedium)
-  Text("Offline country directory • 29 Schengen countries",style=MaterialTheme.typography.bodySmall)
+  Text("Offline • 29 countries • GeoNames cities500 coverage",style=MaterialTheme.typography.bodySmall)
   Spacer(Modifier.height(12.dp))
-  if(country!=null) TextButton(onClick={back()}) { Text("← Back") }
-  OutlinedTextField(value=query,onValueChange={query=it},label={Text("Search")},singleLine=true,modifier=Modifier.fillMaxWidth())
+  if(current!=null) TextButton(onClick={back()}) { Text("← Back") }
+  OutlinedTextField(value=query,onValueChange={query=it},label={Text("Search current level")},singleLine=true,modifier=Modifier.fillMaxWidth())
   Spacer(Modifier.height(8.dp))
-  if(country==null) {
+  if(current==null) {
    Row {
     FilterChip(selected=!favoritesOnly,onClick={favoritesOnly=false},label={Text("All countries")})
     Spacer(Modifier.width(8.dp))
@@ -58,35 +74,47 @@ class MainActivity : ComponentActivity() {
      HorizontalDivider()
     }
    }
-  } else {
-   val c=country!!
-   if(region==null) {
-    Text(c.name,style=MaterialTheme.typography.headlineSmall)
-    Spacer(Modifier.height(8.dp))
-    Text("Capital: ${c.capital}")
-    Text("Administrative structure: ${c.divisions}")
-    Text("Currency: ${c.currency}")
-    Text("Regions listed: ${c.regions.size}")
-    TextButton(onClick={
-     val next=favorites.toMutableSet()
-     if(!next.add(c.name))next.remove(c.name)
-     favorites=next
-     prefs.edit().putStringSet("countries",next).apply()
-    }) { Text(if(c.name in favorites) "★ Remove favorite" else "☆ Add favorite") }
-    Spacer(Modifier.height(8.dp))
-    Text("Administrative divisions",style=MaterialTheme.typography.titleMedium)
-    if(c.regions.isEmpty()) Text("Detailed regional directory not yet included.")
-    LazyColumn {
-     items(c.regions.filter { it.contains(query,true) }) { r ->
-      ListItem(headlineContent={Text(r)},modifier=Modifier.clickable {region=r;query=""})
-      HorizontalDivider()
-     }
+  } else if(region==null) {
+   Text(current.name,style=MaterialTheme.typography.headlineSmall)
+   Text("Capital: ${current.capital}")
+   Text("Administrative structure: ${current.divisions}")
+   Text("Currency: ${current.currency}")
+   Text("Places included: ${subset.size}")
+   TextButton(onClick={
+    val next=favorites.toMutableSet()
+    if(!next.add(current.name))next.remove(current.name)
+    favorites=next
+    prefs.edit().putStringSet("countries",next).apply()
+   }) { Text(if(current.name in favorites) "★ Remove favorite" else "☆ Add favorite") }
+   Text("Regions / first-level areas",style=MaterialTheme.typography.titleMedium)
+   val regions=remember(subset) { subset.map { it.region }.distinct().sorted() }
+   LazyColumn {
+    items(regions.filter { it.contains(query,true) }) { r ->
+     ListItem(headlineContent={Text(r)},modifier=Modifier.clickable {region=r;query=""})
+     HorizontalDivider()
     }
-   } else {
-    Text(region!!,style=MaterialTheme.typography.headlineSmall)
-    Text("Country: ${c.name}")
-    Spacer(Modifier.height(8.dp))
-    Text("Province and municipality dataset is not yet included in this prototype.")
+   }
+  } else if(province==null) {
+   Text(region!!,style=MaterialTheme.typography.headlineSmall)
+   Text(current.name,style=MaterialTheme.typography.bodySmall)
+   Text("Provinces / second-level areas",style=MaterialTheme.typography.titleMedium)
+   val provinces=remember(subset,region) { subset.filter { it.region==region }.map { it.province }.distinct().sorted() }
+   LazyColumn {
+    items(provinces.filter { it.contains(query,true) }) { p ->
+     ListItem(headlineContent={Text(p)},modifier=Modifier.clickable {province=p;query=""})
+     HorizontalDivider()
+    }
+   }
+  } else {
+   Text(province!!,style=MaterialTheme.typography.headlineSmall)
+   Text("${current.name} / ${region}",style=MaterialTheme.typography.bodySmall)
+   Text("Cities and towns (population ≥500, where recorded)",style=MaterialTheme.typography.titleMedium)
+   val cities=remember(subset,region,province) { subset.filter { it.region==region && it.province==province }.map { it.city }.distinct().sorted() }
+   LazyColumn {
+    items(cities.filter { it.contains(query,true) }) { city ->
+     ListItem(headlineContent={Text(city)})
+     HorizontalDivider()
+    }
    }
   }
  }
