@@ -1,0 +1,29 @@
+Austria|Vienna|9 federal states|Euro|Burgenland;Carinthia;Lower Austria;Upper Austria;Salzburg;Styria;Tyrol;Vorarlberg;Vienna
+Belgium|Brussels|3 regions, 10 provinces|Euro|Brussels-Capital;Flanders;Wallonia
+Bulgaria|Sofia|28 provinces|Lev|Blagoevgrad;Burgas;Dobrich;Gabrovo;Haskovo;Kardzhali;Kyustendil;Lovech;Montana;Pazardzhik;Pernik;Pleven;Plovdiv;Razgrad;Ruse;Shumen;Silistra;Sliven;Smolyan;Sofia City;Sofia Province;Stara Zagora;Targovishte;Varna;Veliko Tarnovo;Vidin;Vratsa;Yambol
+Croatia|Zagreb|20 counties and Zagreb|Euro|Zagreb;Split-Dalmatia;Primorje-Gorski Kotar;Istria;Osijek-Baranja
+Czechia|Prague|14 regions|Czech koruna|Prague;Central Bohemian;South Bohemian;Plzeň;Karlovy Vary;Ústí nad Labem;Liberec;Hradec Králové;Pardubice;Vysočina;South Moravian;Olomouc;Zlín;Moravian-Silesian
+Denmark|Copenhagen|5 regions|Danish krone|Capital Region;Central Denmark;North Denmark;Region Zealand;Southern Denmark
+Estonia|Tallinn|15 counties|Euro|Harju;Hiiu;Ida-Viru;Jõgeva;Järva;Lääne;Lääne-Viru;Põlva;Pärnu;Rapla;Saare;Tartu;Valga;Viljandi;Võru
+Finland|Helsinki|19 regions|Euro|Uusimaa;Southwest Finland;Satakunta;Kanta-Häme;Pirkanmaa;Päijät-Häme;Kymenlaakso;South Karelia;South Savo;North Savo;North Karelia;Central Finland;South Ostrobothnia;Ostrobothnia;Central Ostrobothnia;North Ostrobothnia;Kainuu;Lapland;Åland
+France|Paris|18 regions and 101 departments|Euro|Auvergne-Rhône-Alpes;Bourgogne-Franche-Comté;Brittany;Centre-Val de Loire;Corsica;Grand Est;Hauts-de-France;Île-de-France;Normandy;Nouvelle-Aquitaine;Occitanie;Pays de la Loire;Provence-Alpes-Côte d'Azur;Guadeloupe;Martinique;French Guiana;Réunion;Mayotte
+Germany|Berlin|16 federal states|Euro|Baden-Württemberg;Bavaria;Berlin;Brandenburg;Bremen;Hamburg;Hesse;Lower Saxony;Mecklenburg-Vorpommern;North Rhine-Westphalia;Rhineland-Palatinate;Saarland;Saxony;Saxony-Anhalt;Schleswig-Holstein;Thuringia
+Greece|Athens|13 administrative regions|Euro|Attica;Central Greece;Central Macedonia;Crete;East Macedonia and Thrace;Epirus;Ionian Islands;North Aegean;Peloponnese;South Aegean;Thessaly;West Greece;West Macedonia
+Hungary|Budapest|19 counties and Budapest|Forint|Budapest;Pest;Bács-Kiskun;Baranya;Békés;Borsod-Abaúj-Zemplén;Csongrád-Csanád;Fejér;Győr-Moson-Sopron;Hajdú-Bihar;Heves;Jász-Nagykun-Szolnok;Komárom-Esztergom;Nógrád;Somogy;Szabolcs-Szatmár-Bereg;Tolna;Vas;Veszprém;Zala
+Iceland|Reykjavík|8 regions|Icelandic króna|Capital Region;Southern Peninsula;West;Westfjords;Northwest;Northeast;East;South
+Italy|Rome|20 regions|Euro|Abruzzo;Aosta Valley;Apulia;Basilicata;Calabria;Campania;Emilia-Romagna;Friuli Venezia Giulia;Lazio;Liguria;Lombardy;Marche;Molise;Piedmont;Sardinia;Sicily;Trentino-Alto Adige;Tuscany;Umbria;Veneto
+Latvia|Riga|36 municipalities and 7 state cities|Euro|
+Liechtenstein|Vaduz|11 municipalities|Swiss franc|Oberland;Unterland
+Lithuania|Vilnius|10 counties|Euro|Alytus;Kaunas;Klaipėda;Marijampolė;Panevėžys;Šiauliai;Tauragė;Telšiai;Utena;Vilnius
+Luxembourg|Luxembourg|12 cantons|Euro|Capellen;Clervaux;Diekirch;Echternach;Esch-sur-Alzette;Grevenmacher;Luxembourg;Mersch;Redange;Remich;Vianden;Wiltz
+Malta|Valletta|6 districts and 68 local councils|Euro|Gozo and Comino;Northern;Northern Harbour;South Eastern;Southern Harbour;Western
+Netherlands|Amsterdam|12 provinces|Euro|Drenthe;Flevoland;Friesland;Gelderland;Groningen;Limburg;North Brabant;North Holland;Overijssel;South Holland;Utrecht;Zeeland
+Norway|Oslo|15 counties|Norwegian krone|Agder;Akershus;Buskerud;Finnmark;Innlandet;Møre og Romsdal;Nordland;Oslo;Østfold;Rogaland;Telemark;Troms;Trøndelag;Vestfold;Vestland
+Poland|Warsaw|16 voivodeships|Złoty|Greater Poland;Kuyavian-Pomeranian;Lesser Poland;Łódź;Lower Silesian;Lublin;Lubusz;Masovian;Opole;Podkarpackie;Podlaskie;Pomeranian;Silesian;Świętokrzyskie;Warmian-Masurian;West Pomeranian
+Portugal|Lisbon|18 mainland districts and 2 autonomous regions|Euro|Aveiro;Beja;Braga;Bragança;Castelo Branco;Coimbra;Évora;Faro;Guarda;Leiria;Lisbon;Portalegre;Porto;Santarém;Setúbal;Viana do Castelo;Vila Real;Viseu;Azores;Madeira
+Romania|Bucharest|41 counties and Bucharest|Romanian leu|
+Slovakia|Bratislava|8 regions|Euro|Bratislava;Trnava;Trenčín;Nitra;Žilina;Banská Bystrica;Prešov;Košice
+Slovenia|Ljubljana|12 statistical regions|Euro|Central Slovenia;Drava;Carinthia;Savinja;Central Sava;Lower Sava;Southeast Slovenia;Littoral–Inner Carniola;Coastal–Karst;Gorizia;Upper Carniola;Mura
+Spain|Madrid|17 autonomous communities and 2 autonomous cities|Euro|Andalusia;Aragon;Asturias;Balearic Islands;Basque Country;Canary Islands;Cantabria;Castile and León;Castilla-La Mancha;Catalonia;Extremadura;Galicia;La Rioja;Community of Madrid;Region of Murcia;Navarre;Valencian Community;Ceuta;Melilla
+Sweden|Stockholm|21 counties|Swedish krona|Stockholm;Uppsala;Södermanland;Östergötland;Jönköping;Kronoberg;Kalmar;Gotland;Blekinge;Skåne;Halland;Västra Götaland;Värmland;Örebro;Västmanland;Dalarna;Gävleborg;Västernorrland;Jämtland;Västerbotten;Norrbotten
+Switzerland|Bern|26 cantons|Swiss franc|Aargau;Appenzell Ausserrhoden;Appenzell Innerrhoden;Basel-Landschaft;Basel-Stadt;Bern;Fribourg;Geneva;Glarus;Graubünden;Jura;Lucerne;Neuchâtel;Nidwalden;Obwalden;Schaffhausen;Schwyz;Solothurn;St. Gallen;Thurgau;Ticino;Uri;Valais;Vaud;Zug;Zurich
